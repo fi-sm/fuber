@@ -6,6 +6,10 @@ public class Driver {
 
     private Integer id;
 
+    private Integer age;
+
+    private String name;
+
     @Override
     public String toString() {
         return "Driver{" +
@@ -14,8 +18,6 @@ public class Driver {
                 ", age=" + age +
                 '}';
     }
-
-    private String name;
 
     @Override
     public boolean equals(Object o) {
@@ -30,7 +32,6 @@ public class Driver {
         return Objects.hash(id);
     }
 
-    private Integer age;
 
 
 
