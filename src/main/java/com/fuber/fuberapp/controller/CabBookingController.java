@@ -1,5 +1,6 @@
 package com.fuber.fuberapp.controller;
 
+import com.fuber.fuberapp.pojo.CabBooking;
 import org.springframework.web.bind.annotation.RestController;
 import com.fuber.fuberapp.pojo.GenericResponse;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ public class CabBookingController {
 
 
     @PostMapping(value = "/booking")
-    public GenericResponse<String> createBooking(@RequestBody String booking, @RequestHeader(required = true)
+    public GenericResponse<String> bookingRequest(@RequestBody CabBooking booking, @RequestHeader(required = true)
             String idToken)  {
         return new GenericResponse<>(null, HttpStatus.CREATED);
     }

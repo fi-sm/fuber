@@ -1,5 +1,11 @@
 package com.fuber.fuberapp.controller;
 
+import com.fuber.fuberapp.pojo.Cab;
+import com.fuber.fuberapp.pojo.CabWithDistance;
+import com.fuber.fuberapp.pojo.Location;
+import com.fuber.fuberapp.service.CabService;
+import com.fuber.fuberapp.service.DriverService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.fuber.fuberapp.pojo.GenericResponse;
 import org.slf4j.Logger;
@@ -14,27 +20,43 @@ public class CabsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CabsController.class);
 
+    @Autowired
+    private CabService cabService;
     @PostMapping(value = "/cab")
-    public GenericResponse<String> createCabs(@RequestBody String cab, @RequestHeader(required = true)
+    public GenericResponse<Cab> createCabs(@RequestBody Cab cab, @RequestHeader(required = true)
             String idToken)  {
-        return new GenericResponse<>(null, HttpStatus.CREATED);
+        return new GenericResponse<>(cabService.addCab(cab), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/cab")
-    public GenericResponse<List<String>> getCabs(@RequestHeader(required = true) String idToken)  {
-        return new GenericResponse<>(null, HttpStatus.OK);
+    public GenericResponse<List<Cab>> getCabs(@RequestHeader(required = true) String idToken)  {
+        return new GenericResponse<>(cabService.getCabs(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/cab/{id}")
-    public GenericResponse<String> getCabsById(@PathVariable("id") Long id, @RequestHeader(required = true) String idToken)  {
-        return new GenericResponse<>(null, HttpStatus.OK);
+    public GenericResponse<Cab> getCabsById(@PathVariable("id") Integer id, @RequestHeader(required = true) String idToken)  {
+        return new GenericResponse<>(cabService.getCabDetail(id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/cab")
+    public GenericResponse<List<CabWithDistance>> findAvailableCabs(@RequestHeader(required = true) String idToken,
+                                                                    @RequestParam(value = "longitude") Long longitude ,
+                                                                    @RequestParam(value = "latitude") Long latitude,
+                                                                    @RequestParam(value = "color") String color)  {
+        CabWithDistance cab=new CabWithDistance();
+        cab.setColor(color);
+        cab.setLongitude(longitude);
+        cab.setLatitude(latitude);
+
+        return new GenericResponse<>(cabService.findAvailableCabs(cab), HttpStatus.OK);
+    }
+
+
     @PutMapping(value= "/cab/{id}")
-    public GenericResponse<String> modifyCabs(@RequestBody String cab ,
-                                                 @RequestHeader(required = true) String idToken, @PathVariable("id") Long id)
+    public GenericResponse<Cab> modifyCabs(@RequestBody Cab cab ,
+                                                 @RequestHeader(required = true) String idToken, @PathVariable("id") Integer id)
     {
         LOGGER.info("cab id to be updated");
-        return new GenericResponse<>(null, HttpStatus.OK);
+        return new GenericResponse<>(cabService.updateCabDetail(cab,id), HttpStatus.OK);
     }
 }

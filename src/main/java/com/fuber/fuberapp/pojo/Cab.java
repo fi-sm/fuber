@@ -7,6 +7,7 @@ public class Cab {
     private String type;
     private String color;
     private String brand;
+    private String isAvailable;
     private String registrationNumber;//numberPlate
     private Location currentLocation;
 
