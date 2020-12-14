@@ -3,22 +3,15 @@ package com.fuber.fuberapp.pojo;
 import java.util.Objects;
 
 public class Cab {
-    private Long longitude;
-    private Long latitude;
     private Integer id;
     private String type;
     private String color;
+    private String brand;
+    private String registrationNumber;//numberPlate
+    private Location currentLocation;
 
-    @Override
-    public String toString() {
-        return "Cab{" +
-                "longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", id=" + id +
-                ", type='" + type + '\'' +
-                ", color='" + color + '\'' +
-                '}';
-    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -33,20 +26,16 @@ public class Cab {
         return Objects.hash(id);
     }
 
-    public Long getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Long longitude) {
-        this.longitude = longitude;
-    }
-
-    public Long getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Long latitude) {
-        this.latitude = latitude;
+    @Override
+    public String toString() {
+        return "Cab{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", color='" + color + '\'' +
+                ", brand='" + brand + '\'' +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", currentLocation=" + currentLocation +
+                '}';
     }
 
     public Integer getId() {
@@ -71,5 +60,29 @@ public class Cab {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
     }
 }
