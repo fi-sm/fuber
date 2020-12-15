@@ -7,12 +7,17 @@ public class Cab {
     private String type;
     private String color;
     private String brand;
-    private String isAvailable;
+    private String isAvailable="Y";
     private String registrationNumber;//numberPlate
     private Location currentLocation;
 
+    public String getIsAvailable() {
+        return isAvailable;
+    }
 
-
+    public void setIsAvailable(String isAvailable) {
+        this.isAvailable = isAvailable;
+    }
 
     @Override
     public boolean equals(Object o) {

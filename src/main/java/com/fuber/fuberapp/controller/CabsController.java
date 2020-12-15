@@ -38,7 +38,7 @@ public class CabsController {
         return new GenericResponse<>(cabService.getCabDetail(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/cab")
+    @GetMapping(value = "/cab/available")
     public GenericResponse<List<CabWithDistance>> findAvailableCabs(@RequestHeader(required = true) String idToken,
                                                                     @RequestParam(value = "longitude") Long longitude ,
                                                                     @RequestParam(value = "latitude") Long latitude,

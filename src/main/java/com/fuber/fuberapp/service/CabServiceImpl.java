@@ -49,6 +49,12 @@ public class CabServiceImpl implements CabService{
     @Override
     public List<CabWithDistance> findAvailableCabs(CabWithDistance cabWithDistance) {
         List<Cab> cabs=getCabs();
+        //Removed all busy cab
+        cabs = cabs
+                .stream()
+                .filter(producer -> producer.getIsAvailable().equals("N"))
+                .collect(Collectors.toList());
+
         List<CabWithDistance> cabsWithDistance=cabs.stream()
                 .map(s-> {
                     CabWithDistance cabWithDistance1 = new CabWithDistance(s);

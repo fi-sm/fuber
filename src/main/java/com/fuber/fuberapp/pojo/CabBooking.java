@@ -13,7 +13,7 @@ public class CabBooking {
     private LocalDateTime bookingTime;
     private LocalDateTime tripStartTime;
     private LocalDateTime tripEndTime;
-    private String isCompleted;
+    private String isCompleted; //booked/started/completed/suspended/cancel
     private String anyComment;
 
     @Override
